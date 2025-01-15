@@ -16,10 +16,10 @@ public class View {
             System.out.println("4. Delete Product");
 
             // Second object
-            System.out.println("5. Add");
-            System.out.println("6. Show All");
-            System.out.println("7. Update");
-            System.out.println("8. Delete");
+            System.out.println("5. Add Character");
+            System.out.println("6. Show All Characters");
+            System.out.println("7. Update Character");
+            System.out.println("8. Delete Character");
 
             // Helper „Buy” method
             System.out.println("9. Buy");
@@ -41,6 +41,10 @@ public class View {
                 case 2 -> showAllProducts();
                 case 3 -> updateProduct();
                 case 4 -> deleteProduct();
+                case 5 -> addCharacter();
+                case 6 -> showAllCharacters();
+                case 7 -> updateCharacter();
+                case 8 -> deleteCharacter();
             }
         }
     }
@@ -84,6 +88,36 @@ public class View {
         System.out.println("Enter the product ID");
         int id = scanner.nextInt();
         controller.deleteProduct(id);
+    }
+
+    // CRUD Character
+    private void addCharacter() {
+        System.out.println("Enter the character ID");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Enter the character name");
+        String name = scanner.nextLine();
+        controller.addCharacter(new Character(id, name));
+    }
+
+    private void showAllCharacters() {
+        controller.getCharacterList().forEach(System.out::println);
+    }
+
+    private void updateCharacter() {
+        controller.getCharacterList().forEach(System.out::println);
+        System.out.println("Enter the character ID");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Enter the character name");
+        String name = scanner.nextLine();
+        controller.updateCharacter(id, name);
+    }
+
+    private void deleteCharacter() {
+        System.out.println("Enter the character ID");
+        int id = scanner.nextInt();
+        controller.deleteCharacter(id);
     }
 
 }

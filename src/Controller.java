@@ -7,7 +7,7 @@ public class Controller {
     private List<Product> productList = new ArrayList<>();
     private List<Character> characterList= new ArrayList<>();
 
-    // CRUD Film
+    // CRUD Product
     public void addProduct(Product product) {
         productList.add(product);
     }
@@ -28,6 +28,27 @@ public class Controller {
 
     public void deleteProduct(int id) {
         productList.removeIf(product -> product.getId() == id);
+    }
+
+    // CRUD Character
+    public void addCharacter(Character character) {
+        characterList.add(character);
+    }
+
+    public List<Character> getCharacterList() {
+        return characterList;
+    }
+
+    public void updateCharacter(int id, String newName) {
+        for (Character character : characterList) {
+            if (character.getId() == id) {
+                character.setName(newName);
+            }
+        }
+    }
+
+    public void deleteCharacter(int id) {
+        characterList.removeIf(character -> character.getId() == id);
     }
 
 }
