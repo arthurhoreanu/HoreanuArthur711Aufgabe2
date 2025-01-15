@@ -28,7 +28,7 @@ public class View {
             System.out.println("10. Filter Characters by Region");
 
             // Second filter
-            System.out.println("11. Filter Y by Z");
+            System.out.println("11. Filter Characters by product's region");
 
             // Sort
             System.out.println("12. Sort X in ascending/descending order");
@@ -47,6 +47,7 @@ public class View {
                 case 8 -> deleteCharacter();
                 case 9 -> buyProducts();
                 case 10 -> filterCharacterByRegion();
+                case 11 -> filterCharacterByProductRegion();
             }
         }
     }
@@ -142,4 +143,9 @@ public class View {
         controller.filterCharactersByRegion(region).forEach(System.out::println);
     }
 
+    private void filterCharacterByProductRegion() {
+        System.out.println("Enter the product region");
+        String region = scanner.nextLine();
+        controller.filterCharacterByProductRegion(region).forEach(System.out::println);
+    }
 }

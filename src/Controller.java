@@ -75,4 +75,17 @@ public class Controller {
         return filteredList;
     }
 
+    // Filter: characters by product's region
+    public List<Character> filterCharacterByProductRegion(String region) {
+        List<Character> filteredCustomers = new ArrayList<>();
+        for (Character character : characterList) {
+            for (Product product : character.getProducts()) {
+                if (product.getRegion().equals(region)) {
+                    filteredCustomers.add(character);
+                }
+            }
+        }
+        return filteredCustomers;
+    }
+
 }
