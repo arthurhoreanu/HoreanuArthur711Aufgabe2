@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class Controller {
@@ -39,16 +38,41 @@ public class Controller {
         return characterList;
     }
 
-    public void updateCharacter(int id, String newName) {
+    public void updateCharacter(int id, String newName, String newRegion) {
         for (Character character : characterList) {
             if (character.getId() == id) {
                 character.setName(newName);
+                character.setRegion(newRegion);
             }
         }
     }
 
     public void deleteCharacter(int id) {
         characterList.removeIf(character -> character.getId() == id);
+    }
+
+    // Helper method: buy
+    public void buyProducts(int characterID, int productID) {
+        for (Character character : characterList) {
+            if (character.getId() == characterID) {
+                for (Product product : productList) {
+                    if (product.getId() == productID) {
+                        character.getProducts().add(product);
+                    }
+                }
+            }
+        }
+    }
+
+    // Filter: characters by region
+    public List<Character> filterCharactersByRegion(String region) {
+        List<Character> filteredList = new ArrayList<>();
+        for (Character character : characterList) {
+            if (character.getRegion().equals(region)) {
+                filteredList.add(character);
+            }
+        }
+        return filteredList;
     }
 
 }

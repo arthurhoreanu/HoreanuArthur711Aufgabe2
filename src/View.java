@@ -22,10 +22,10 @@ public class View {
             System.out.println("8. Delete Character");
 
             // Helper „Buy” method
-            System.out.println("9. Buy");
+            System.out.println("9. Buy Product");
 
             // First filter
-            System.out.println("10. Filter X by Y");
+            System.out.println("10. Filter Characters by Region");
 
             // Second filter
             System.out.println("11. Filter Y by Z");
@@ -45,6 +45,8 @@ public class View {
                 case 6 -> showAllCharacters();
                 case 7 -> updateCharacter();
                 case 8 -> deleteCharacter();
+                case 9 -> buyProducts();
+                case 10 -> filterCharacterByRegion();
             }
         }
     }
@@ -97,7 +99,9 @@ public class View {
         scanner.nextLine();
         System.out.println("Enter the character name");
         String name = scanner.nextLine();
-        controller.addCharacter(new Character(id, name));
+        System.out.println("Enter the character region");
+        String region = scanner.nextLine();
+        controller.addCharacter(new Character(id, name, region));
     }
 
     private void showAllCharacters() {
@@ -111,13 +115,31 @@ public class View {
         scanner.nextLine();
         System.out.println("Enter the character name");
         String name = scanner.nextLine();
-        controller.updateCharacter(id, name);
+        System.out.println("Enter the character region");
+        String region = scanner.nextLine();
+        controller.updateCharacter(id, name, region);
     }
 
     private void deleteCharacter() {
         System.out.println("Enter the character ID");
         int id = scanner.nextInt();
         controller.deleteCharacter(id);
+    }
+
+    private void buyProducts() {
+        showAllCharacters();
+        showAllProducts();
+        System.out.println("Enter the character ID");
+        int characterID = scanner.nextInt();
+        System.out.println("Enter the product ID");
+        int productID = scanner.nextInt();
+        controller.buyProducts(characterID, productID);
+    }
+
+    private void filterCharacterByRegion() {
+        System.out.println("Enter the character region");
+        String region = scanner.nextLine();
+        controller.filterCharactersByRegion(region).forEach(System.out::println);
     }
 
 }

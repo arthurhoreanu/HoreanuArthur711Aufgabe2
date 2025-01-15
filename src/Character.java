@@ -5,11 +5,31 @@ public class Character {
 
     private int id;
     private String name;
+    private String region;
     private List<Product> products = new ArrayList<Product>();
 
-    public Character(int id, String name) {
+    @Override
+    public String toString() {
+        return "Character{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", region='" + region + '\'' +
+                ", products=" + products +
+                '}';
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public Character(int id, String name, String region) {
         this.id = id;
         this.name = name;
+        this.region = region;
         this.products = products;
     }
 
@@ -37,12 +57,4 @@ public class Character {
         this.products = products;
     }
 
-    @Override
-    public String toString() {
-        return "Character{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", products=" + products +
-                '}';
-    }
 }
