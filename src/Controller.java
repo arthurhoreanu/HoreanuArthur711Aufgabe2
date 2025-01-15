@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Controller {
@@ -86,6 +87,22 @@ public class Controller {
             }
         }
         return filteredCustomers;
+    }
+
+    // Sort: character's products in ascending/descending order
+    public List<Product> sortCharactersProducts(int characterID, boolean ascending) {
+        for (Character character : characterList) {
+            if (character.getId() == characterID) {
+                List<Product> sortedFilms = new ArrayList<>(character.getProducts());
+                if (ascending) {
+                    sortedFilms.sort(Comparator.comparing(Product::getPrice));
+                } else {
+                    sortedFilms.sort(Comparator.comparing(Product::getPrice).reversed());
+                }
+                return sortedFilms;
+            }
+        }
+        return new ArrayList<>();
     }
 
 }
