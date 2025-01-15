@@ -1,3 +1,9 @@
+package view;
+
+import model.Product;
+import model.Character;
+import controller.*;
+
 import java.util.Scanner;
 
 public class View {
@@ -54,6 +60,10 @@ public class View {
     }
 
     // CRUD Film
+
+    /**
+     * Creates product to the InMemory repository.
+     */
     private void addProduct() {
         System.out.println("Enter the product ID");
         int id = scanner.nextInt();
@@ -69,10 +79,16 @@ public class View {
         controller.addProduct(new Product(id, name, price, region));
     }
 
+    /**
+     * Gets all products from the InMemory repository.
+     */
     private void showAllProducts() {
         controller.getProductList().forEach(System.out::println);
     }
 
+    /**
+     * Updates products to the InMemory repository.
+     */
     private void updateProduct() {
         showAllProducts();
         System.out.println("Enter the product ID");
@@ -88,6 +104,9 @@ public class View {
         controller.updateProduct(id, name, price, region);
     }
 
+    /**
+     * Deletes products from the InMemory repository.
+     */
     private void deleteProduct() {
         System.out.println("Enter the product ID");
         int id = scanner.nextInt();
@@ -95,6 +114,10 @@ public class View {
     }
 
     // CRUD Character
+
+    /**
+     * Adds character to the InMemory repository.
+     */
     private void addCharacter() {
         System.out.println("Enter the character ID");
         int id = scanner.nextInt();
@@ -106,10 +129,16 @@ public class View {
         controller.addCharacter(new Character(id, name, region));
     }
 
+    /**
+     * Gets all characters from the InMemory repository.
+     */
     private void showAllCharacters() {
         controller.getCharacterList().forEach(System.out::println);
     }
 
+    /**
+     * Updates character from the InMemory repository.
+     */
     private void updateCharacter() {
         controller.getCharacterList().forEach(System.out::println);
         System.out.println("Enter the character ID");
@@ -122,12 +151,18 @@ public class View {
         controller.updateCharacter(id, name, region);
     }
 
+    /**
+     * Deletes character from the InMemory repository.
+     */
     private void deleteCharacter() {
         System.out.println("Enter the character ID");
         int id = scanner.nextInt();
         controller.deleteCharacter(id);
     }
 
+    /**
+     * Helper method: characters buy products.
+     */
     private void buyProducts() {
         showAllCharacters();
         showAllProducts();
@@ -138,18 +173,27 @@ public class View {
         controller.buyProducts(characterID, productID);
     }
 
+    /**
+     * Filter character by their region (user input).
+     */
     private void filterCharacterByRegion() {
         System.out.println("Enter the character region");
         String region = scanner.nextLine();
         controller.filterCharactersByRegion(region).forEach(System.out::println);
     }
 
+    /**
+     * Filter characters that have bought products from a specific region.
+     */
     private void filterCharacterByProductRegion() {
         System.out.println("Enter the product region");
         String region = scanner.nextLine();
         controller.filterCharacterByProductRegion(region).forEach(System.out::println);
     }
 
+    /**
+     * Sorts characters' products in ascending/descending order.
+     */
     private void sortCharactersProducts() {
         controller.getCharacterList().forEach(System.out::println);
         System.out.println("Enter the character ID");
